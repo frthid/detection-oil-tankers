@@ -1,0 +1,7 @@
+train: /content/drive/MyDrive/detection-oil-storage/data/train/images
+val: /content/drive/MyDrive/detection-oil-storage/data/valid/images
+test: /content/drive/MyDrive/detection-oil-storage/data/test/images
+
+nc: 1
+names: ['Storage-Tank']
+
