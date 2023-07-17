@@ -1,9 +1,0 @@
-path: C:\Users\Dimon\Desktop\project\detection-oil-tankers\src\data
-train: images/train
-val: images/train
-
-#Classes
-names:
-  0: tank
-  1: floating Head Tank
-  2: tank Cluster
