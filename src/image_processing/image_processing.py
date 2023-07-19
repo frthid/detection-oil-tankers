@@ -1,5 +1,7 @@
 from osgeo import gdal
 import numpy as np
+from object_detection.object_detection import detect_objects
+
 
 def split_image(image_path, tile_size, overlap):
     dataset = gdal.Open(image_path)
@@ -26,3 +28,4 @@ def split_image(image_path, tile_size, overlap):
 
 def process_tile(tile):
     print("Обработка изображения")
+    detect_objects(tile)
