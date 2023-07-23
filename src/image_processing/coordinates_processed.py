@@ -49,5 +49,5 @@ def recording_processed_coordinates(num_blocks_x, num_blocks_y, tile_size, overl
     feature_collection = geojson.FeatureCollection(features)
     
     # записать geojson FeatureCollection в файл
-    with open("output.geojson", "w") as f:
+    with open("output.geojson", "a") as f:
         geojson.dump(feature_collection, f)
