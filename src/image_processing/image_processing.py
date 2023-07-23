@@ -2,7 +2,6 @@ from osgeo import gdal
 import numpy as np
 from object_detection.object_detection import detect_objects
 
-
 def split_image(image_path, tile_size, overlap):
     dataset = gdal.Open(image_path)
     width = dataset.RasterXSize
@@ -27,5 +26,17 @@ def split_image(image_path, tile_size, overlap):
 
 
 def process_tile(tile):
+    transposed_image = np.transpose(tile, (1, 2, 0))
+    if not transposed_image.flags['C_CONTIGUOUS']:
+        transposed_image = np.ascontiguousarray(transposed_image)
     print("Обработка изображения")
-    detect_objects(tile)
+    detect_objects(transposed_image)
+
+
+# def main():
+#     image_path = "src/test_img/NHT.tif"
+#     tile_size = 512
+#     overlap = 30
+#     split_image(image_path, tile_size, overlap)
+
+# main()
