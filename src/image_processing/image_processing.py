@@ -1,6 +1,7 @@
 from osgeo import gdal
 import numpy as np
 from object_detection.object_detection import detect_objects
+from image_processing.coordinates_processed import recording_processed_coordinates
 
 def split_image(image_path, tile_size, overlap):
     dataset = gdal.Open(image_path)
@@ -22,16 +23,17 @@ def split_image(image_path, tile_size, overlap):
                 x_end = width
                 x_start = x_end - tile_size
             tile = dataset.ReadAsArray(x_start, y_start, tile_size, tile_size)
-            process_tile(tile)
 
+            transposed_image = np.transpose(tile, (1, 2, 0))
+            if not transposed_image.flags['C_CONTIGUOUS']:
+                transposed_image = np.ascontiguousarray(transposed_image)
 
-def process_tile(tile):
-    transposed_image = np.transpose(tile, (1, 2, 0))
-    if not transposed_image.flags['C_CONTIGUOUS']:
-        transposed_image = np.ascontiguousarray(transposed_image)
+            process_tile(num_blocks_x, num_blocks_y, tile_size, overlap, transposed_image, dataset)
+
+def process_tile(num_blocks_x, num_blocks_y, tile_size, overlap, tile, dataset):
     print("Обработка изображения")
-    detect_objects(transposed_image)
-
+    results = detect_objects(tile)
+    recording_processed_coordinates(num_blocks_x, num_blocks_y, tile_size, overlap, tile, results, dataset)
 
 # def main():
 #     image_path = "src/test_img/NHT.tif"

@@ -1,7 +1,6 @@
 from ultralytics import YOLO
 import numpy as np
 from pathlib import Path
-from PIL import Image
 
 def detect_objects(source):
   model = YOLO('src/trained_model/best.pt')
