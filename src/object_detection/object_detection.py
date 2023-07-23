@@ -7,6 +7,7 @@ def detect_objects(source):
 
   results = model.predict(source, conf=0.5)
   #print(results)
+  #print(type(results[0].boxes))
 
   # СОХРАНЕНИЕ КАЖДОГО ОБНАРУЖЕННОГО ОБЪЕКТА
   # for i, result in enumerate(results):

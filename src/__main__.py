@@ -1,4 +1,5 @@
 from image_processing.image_processing import split_image
+#from object_detection.object_detection import detect_objects
 
 #source = 'src/test_img/01_4_4_jpg.rf.4d7e83079ffab3608dbd1d20eb681d95.jpg'
 #detect_objects(source)

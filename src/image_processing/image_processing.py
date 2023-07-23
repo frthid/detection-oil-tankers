@@ -33,7 +33,8 @@ def split_image(image_path, tile_size, overlap):
 def process_tile(num_blocks_x, num_blocks_y, tile_size, overlap, tile, dataset):
     print("Обработка изображения")
     results = detect_objects(tile)
-    recording_processed_coordinates(num_blocks_x, num_blocks_y, tile_size, overlap, tile, results, dataset)
+    #if not results.is_empty():
+    recording_processed_coordinates(num_blocks_x, num_blocks_y, tile_size, overlap, results, tile, dataset)
 
 # def main():
 #     image_path = "src/test_img/NHT.tif"
